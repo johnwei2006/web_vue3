@@ -21,6 +21,30 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/views/home/index.vue'),
         meta: { title: '首页', requiresAuth: true, roles: ['admin', 'user'] },
       },
+      {
+        path: 'devices',
+        name: 'Devices',
+        component: () => import('@/views/devices/index.vue'),
+        meta: { title: '设备管理', requiresAuth: true, roles: ['admin', 'user'] },
+      },
+      {
+        path: 'devices/:id',
+        name: 'DeviceDetail',
+        component: () => import('@/views/devices/detail.vue'),
+        meta: { title: '设备详情', requiresAuth: true, roles: ['admin', 'user'] },
+      },
+      {
+        path: 'alarms',
+        name: 'Alarms',
+        component: () => import('@/views/alarms/index.vue'),
+        meta: { title: '告警看板', requiresAuth: true, roles: ['admin', 'user'] },
+      },
+      {
+        path: 'data',
+        name: 'Data',
+        component: () => import('@/views/data/index.vue'),
+        meta: { title: '数据查询', requiresAuth: true, roles: ['admin', 'user'] },
+      },
     ],
   },
   {

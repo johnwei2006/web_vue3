@@ -19,18 +19,10 @@ export default defineConfig({
     port: 5173,
     open: true,
     proxy: {
-      // 开发环境接口代理：将 /api 转发到后端服务
+      // 开发环境接口代理：将 /api 转发到 platform_java 后台（端口 8081）
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:8081',
         changeOrigin: true,
-        // 登录与用户信息接口由 vite-plugin-mock 在 dev 拦截，跳过代理避免转发到未启动的后端；
-        // 其余 /api 路由仍正常代理到 localhost:3000 进行真实联调
-        bypass(req) {
-          const url = req.url || '';
-          if (url === '/api/user/login' || url === '/api/user/info') {
-            return false;
-          }
-        },
       },
     },
   },

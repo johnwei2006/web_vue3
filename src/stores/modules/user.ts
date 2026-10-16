@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { login as loginApi, getUserInfo } from '@/api/user';
-import type { LoginPayload, UserInfo } from '@/types';
+import { login as loginApi } from '@/api/user';
+import type { LoginPayload, LoginResult, UserInfo } from '@/types';
 import { storage } from '@/utils/storage';
 
 interface UserState {
@@ -20,14 +20,11 @@ export const useUserStore = defineStore('user', {
   actions: {
     async login(payload: LoginPayload) {
       const res = await loginApi(payload);
-      this.token = res.data;
-      storage.set('token', this.token);
-      return res.data;
-    },
-    async fetchUserInfo() {
-      const res = await getUserInfo();
-      this.userInfo = res.data;
-      return res.data;
+      const data: LoginResult = res.data;
+      this.token = data.token;
+      this.userInfo = { name: data.username, roles: [data.role] };
+      storage.set('token', data.token);
+      return data.token;
     },
     logout() {
       this.token = '';

@@ -32,6 +32,18 @@ const handleLogout = () => {
           <el-icon><HomeFilled /></el-icon>
           <span>首页</span>
         </el-menu-item>
+        <el-menu-item index="/devices">
+          <el-icon><Monitor /></el-icon>
+          <span>设备管理</span>
+        </el-menu-item>
+        <el-menu-item index="/alarms">
+          <el-icon><Warning /></el-icon>
+          <span>告警看板</span>
+        </el-menu-item>
+        <el-menu-item index="/data">
+          <el-icon><DataLine /></el-icon>
+          <span>数据查询</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
     <el-container>
